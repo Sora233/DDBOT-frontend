@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>Hello {{ msg }}</h1>
 
   <label>
     <input type="checkbox" v-model="useScriptSetup" /> Use
