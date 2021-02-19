@@ -8,7 +8,9 @@
               <span style="font-size: xx-large">群数量</span>
             </div>
           </template>
-          1
+          <div v-loading="true">
+            {{ groupCount }}
+          </div>
         </el-card>
       </el-col>
       <el-col :span="6">
@@ -18,7 +20,7 @@
               <span style="font-size: xx-large">好友数量</span>
             </div>
           </template>
-          2
+          {{ friendCount }}
         </el-card>
       </el-col>
     </el-row>
@@ -49,16 +51,19 @@
 
 <script>
 import {defineComponent, ref} from "vue";
+import anchor from "./anchor.vue";
 
 export default defineComponent({
   name: "dashboard",
+  components: {
+    anchor,
+  },
   setup() {
-    const basicInfo = ref([{
-      groupCount: 1,
-      friendCount: 2,
-    }])
+    const groupCount = ref(0)
+    const friendCount = ref(0)
     return {
-      basicInfo
+      groupCount,
+      friendCount
     }
   }
 })

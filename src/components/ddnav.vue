@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router>
-    <el-menu-item>
-      <el-link style="font-size: large" href="/">DDBOT</el-link>
+    <el-menu-item index="DDBOT">
+      <el-link style="font-size: large">DDBOT</el-link>
     </el-menu-item>
     <el-menu-item index="dashboard">
       <template #title>
@@ -14,17 +14,23 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {defineComponent, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
 
-export default {
+export default defineComponent({
   name: "ddnav",
   setup() {
-    const activeIndex = ref('dashboard')
+    const activeIndex = ref('DDBOT')
+    const route = useRoute()
+    const router = useRouter()
+    router.afterEach((to, from) => {
+      activeIndex.value = route.name
+    })
     return {
       activeIndex
     }
   },
-}
+})
 </script>
 
 <style scoped>
